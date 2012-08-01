@@ -166,7 +166,7 @@ $embedded_script = isset ( $_POST['embedded_script'] ) ? $_POST['embedded_script
 if ( $embedded_script != "" ) {
     $emb_script_path = "$build_dir" . "/script0.gpxe";
 
-	if ( substr ( $embedded_script, 0, 5 ) != "#!gpxe" ) {
+	if ( substr ( $embedded_script, 0, 6 ) != "#!gpxe" ) {
 		$embedded_script = "#!gpxe\n" . $embedded_script;
 	}
 
@@ -179,7 +179,7 @@ if ( $embedded_script != "" ) {
 
 // Make the requested image.  $status is set to 0 on success
 $make_target = "bin/${nic}.${fmt_extension}";
-$make_cmd = "make -C '$build_dir' '$make_target' $emb_script_cmd $2>&1";
+$make_cmd = "make -C '$build_dir' '$make_target' $emb_script_cmd 2>&1";
 
 exec ( $make_cmd, $maketxt, $status );
 
